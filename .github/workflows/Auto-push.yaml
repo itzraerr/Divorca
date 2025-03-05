@@ -1,0 +1,22 @@
+name: Auto Push
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+	git config --global user.name "itzraerr"
+        git config --global user.email "epebejunior@gmail.com"
+
+    - name: Commit and push changes
+      run: |
+        git add .
+        git commit -m "Automated commit from GitHub Actions"
+        git push

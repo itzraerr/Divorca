@@ -58,9 +58,13 @@ if df is not None:
     explainer = shap.TreeExplainer(model)
     shap_values = explainer.shap_values(X_test)
     
-    # SHAP Summary Plot
+    # Debugging Shape Mismatch
+    st.write("SHAP Values Shape:", np.shape(shap_values))
+    st.write("X_test Shape:", X_test.shape)
+    
+    # SHAP Summary Plot with Correct Indexing
     fig, ax = plt.subplots(figsize=(10, 6))
-    shap.summary_plot(shap_values[1], X_test, show=False)
+    shap.summary_plot(shap_values[1] if isinstance(shap_values, list) else shap_values, X_test, show=False)
     plt.title("SHAP Feature Importance")
     st.pyplot(fig)
     

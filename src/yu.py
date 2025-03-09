@@ -51,12 +51,13 @@ else:
 
 st.write(f"Confidence: {prediction_prob[prediction]*100:.2f}%")
 
-# Feature Importance Explanation (Instead of SHAP)
+# Feature Importance Explanation (Updated Section)
 st.subheader("Why this prediction? (Feature Importance)")
 feature_importances = model.feature_importances_
 importance_df = pd.DataFrame({'Feature': X.columns, 'Importance': feature_importances})
 importance_df = importance_df.sort_values(by='Importance', ascending=False)
 
+# Bar chart of feature importance using Matplotlib
 fig, ax = plt.subplots()
 ax.barh(importance_df['Feature'], importance_df['Importance'], color='skyblue')
 ax.set_xlabel('Importance Score')

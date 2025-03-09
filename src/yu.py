@@ -53,18 +53,23 @@ else:
 
 st.write(f"Confidence: {prediction_prob[prediction]*100:.2f}%")
 
-# Feature Importance Explanation (Updated Section)
+# Feature Importance Explanation (Spaced Graph)
 st.subheader("Why this prediction? (Feature Importance)")
+
+# Get feature importances
 feature_importances = model.feature_importances_
 importance_df = pd.DataFrame({'Feature': X.columns, 'Importance': feature_importances})
 importance_df = importance_df.sort_values(by='Importance', ascending=False)
 
-# Bar chart of feature importance using Matplotlib
-fig, ax = plt.subplots()
-ax.barh(importance_df['Feature'], importance_df['Importance'], color='skyblue')
-ax.set_xlabel('Importance Score')
-ax.set_ylabel('Feature')
-ax.set_title('Feature Importance in Prediction')
+# Adjust the visualization to improve spacing
+fig, ax = plt.subplots(figsize=(10, 12))  # Increase figure size for better spacing
+ax.barh(importance_df['Feature'], importance_df['Importance'], color='skyblue', height=0.5)  # Adjust bar height for spacing
+ax.set_xlabel('Importance Score', fontsize=12)
+ax.set_ylabel('Feature', fontsize=12)
+ax.set_title('Feature Importance in Prediction', fontsize=16)
+plt.xticks(fontsize=10)
+plt.yticks(fontsize=10)
+plt.tight_layout()  # Automatically adjust layout for better appearance
 st.pyplot(fig)
 
 # Ethics Section

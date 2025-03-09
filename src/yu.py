@@ -10,13 +10,15 @@ import matplotlib.pyplot as plt
 st.title("Divorca - AI Divorce Predictor")
 st.write("Predict the likelihood of divorce based on relationship factors.")
 
-# Load dataset (South Africa dataset you provided)
-@st.cache_data
-def load_data():
-    df = pd.read_csv('divorce_data.csv')
-    return df
+# Load dataset manually
+st.subheader("Upload your dataset")
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
 
-df = load_data()
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.write("Dataset loaded successfully!")
+else:
+    st.warning("Please upload a CSV file to proceed.")
 
 # Preprocess Data
 X = df.drop("Divorce Probability", axis=1)

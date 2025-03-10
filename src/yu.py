@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix
 import matplotlib.pyplot as plt
 
+st.set_page_config(layout="wide")
+
 # Title and Description
 st.title("Divorca - AI Divorce Predictor")
 st.write("Predict the likelihood of divorce based on relationship factors.")
